@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function createCard(work) {
+    // Ensure the process document link is a valid URL
+    const validProcessDocLink = (work.processDocLink.startsWith('http://') || work.processDocLink.startsWith('https://')) ? work.processDocLink : 'http://' + work.processDocLink;
+
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
@@ -31,7 +34,7 @@ function createCard(work) {
         <div class="card-body">
             <h5 class="card-title">${work.title} - by ${work.studentName}</h5>
             <p class="card-text">${work.description}</p>
-            <a href="${work.processDocLink}" class="btn btn-primary" target="_blank">View Process Document</a>
+            <a href="${validProcessDocLink}" class="btn btn-primary" target="_blank">View Process Document</a>
         </div>
     `;
     return card;
